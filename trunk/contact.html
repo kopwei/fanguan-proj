@@ -17,14 +17,26 @@ jQuery(document).ready(function(){
 			subject: $('#subject').val(),
 			message: $('#message').val()
 		},
-			function(data){
-				$('#contactform #submit').attr('disabled','');
-				$('.response').remove();
-				$('#contactform').before('<p class="response">'+data+'</p>');
-				$('.response').slideDown();
-				if(data=='Message sent!') $('#contactform').slideUp();
-			}
-		); 
+        function(data){
+            $('#contactform #submit').attr('disabled','');
+            $('.response').remove();
+            $('#contactform').before('<p class="response">'+data+'</p>');
+            $('.response').slideDown();
+            if(data=='Message sent!') $('#contactform').slideUp();
+        }); 
+        //var datastring = 'name=' + $('#name').val()
+        
+        $.ajax({
+            type: "POST",
+            url: "php/ajax.php",
+            data: $('#contactform').serialize(),
+            success: function(data){
+                $('#contactform #submit').attr('disabled','');
+                $('.response').remove();
+                $('#contactform').before('<p class="response">'+ data +'</p>');
+                $('.response').slideDown();
+            }
+        });
 		return false;
 	});
 });
