@@ -9,21 +9,6 @@
 // <![CDATA[
 jQuery(document).ready(function(){
 	$('#contactform').submit(function(){				  
-		var action = $(this).attr('action');
-		$.post(action, { 
-			name: $('#name').val(),
-			email: $('#email').val(),
-			company: $('#company').val(),
-			subject: $('#subject').val(),
-			message: $('#message').val()
-		},
-        function(data){
-            $('#contactform #submit').attr('disabled','');
-            $('.response').remove();
-            $('#contactform').before('<p class="response">'+data+'</p>');
-            $('.response').slideDown();
-            if(data=='Message sent!') $('#contactform').slideUp();
-        }); 
         //var datastring = 'name=' + $('#name').val()
         
         $.ajax({
@@ -33,9 +18,18 @@ jQuery(document).ready(function(){
             success: function(data){
                 $('#contactform #submit').attr('disabled','');
                 $('.response').remove();
-                $('#contactform').before('<p class="response">'+ data +'</p>');
+                $('#contactform').before('<p class="response">'+ data.message +'</p>');
                 $('.response').slideDown();
-                alert('Thanks for your reservation and we will confirm it with you by email or phone as soon as possible.');
+                data = JSON.parse(data);
+                if (data['stat'] == 'fail')
+                {
+                    alert('Error occured in data submit.');
+                }
+                else
+                {
+                    alert('Thanks for your reservation and we will confirm it with you by email or phone as soon as possible.');
+                }
+                    
             }
         });
 		return false;
@@ -72,7 +66,7 @@ jQuery(document).ready(function(){
     <div class="body_resize2">
       <p><strong>Lorem Ipsum has been</strong><br />
         The industry's standard dummy text ever since thes when an unknown printer. <a href="#">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since thes</a>, when an unknown printer.Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since thes, when an unknown printer.</p>
-      <form action="contact.php" method="post" id="contactform">
+      <form id="contactform">
         <ol>
           <li>
             <label for="name">your name <span class="red">*</span></label>
