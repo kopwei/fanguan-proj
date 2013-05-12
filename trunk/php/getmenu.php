@@ -9,15 +9,3 @@ function getMenuArray($menuFilePath)
    return $sheetData;
 }
 
-?>
-<html>
-<head></head>
-<body>
-    <div>
-    <?php
-        $menuData = getMenuArray('./menu.xlsx');
-        
-        ?>
-    </div>
-</body>
-</html>
