@@ -88,13 +88,16 @@ html { padding:0; margin:0;}
 .con li { background:url(images/ul_li.gif) left no-repeat; padding:0 0 0 20px; margin:0;}
 /********** contact form **********/
 #contactform { margin:0; padding:5px 10px;}
-#contactform * { color:#222222;}
+/*#contactform * { color:#222222;}*/
 #contactform ol { margin:0; padding:0; list-style:none;}
 #contactform li { margin:0; padding:0; background:none; border:none; display:block;}
 #contactform li.buttons { margin:5px 0 5px 0;}
 #contactform label { margin:0; width:110px; display:block; padding:5px 0; font:normal 12px Arial, Helvetica, sans-serif; color:#fff; text-transform:capitalize; float:left;}
-#contactform label span { display:block; font:normal 10px Arial, Helvetica, sans-serif;}
-#contactform input.text { width:440px; border:1px solid #dcdcdc; margin:5px 0; padding:5px 2px; height:16px; background:#f5f5f5; float:left;}
+/*#contactform label span { display:block; font:normal 10px Arial, Helvetica, sans-serif;}*/
+#contactform div.error { color: red; padding-left: 110px; vertical-align: top; font:normal 12px Arial, Helvetica, sans-serif;}
+#contactform input.required { width:440px; border:1px solid #dcdcdc; margin:5px 0; padding:5px 2px; height:16px; background:#f5f5f5; float:left;}
+#contactform input.required email { width:440px; border:1px solid #dcdcdc; margin:5px 0; padding:5px 2px; height:16px; background:#f5f5f5; float:left;}
+/*#contactform input.text { width:440px; border:1px solid #dcdcdc; margin:5px 0; padding:5px 2px; height:16px; background:#f5f5f5; float:left;}*/
 #contactform textarea { width:440px; border:1px solid #dcdcdc; margin:10px 0; padding:2px; background:#f5f5f5; float:left;}
 #contactform li.buttons input { padding:3px 0; margin:20px 110px; border:0; color:#FFF;}
 p.response { text-align:center; color:#fff; font: bold 11px Arial, Helvetica, sans-serif; line-height:1.8em; width:auto;}

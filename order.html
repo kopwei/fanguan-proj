@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>contact</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(function(){
+	$('#contactform').submit(function(){				
+        var validationResult = $("#contactform").validate({
+			errorElement: "div"
+		});
+		
+		if(!$("#contactform").valid()) return false;
+		
+        $.ajax({
+            type: "POST",
+            url: "php/ajax.php",
+            data: $('#contactform').serialize(),
+            success: function(data){
+				data = JSON.parse(data);
+                $('#contactform #submit').attr('disabled','');
+                $('.response').remove();
+                $('#contactform').before('<p class="response">'+ data['message'] +'</p>');
+                $('.response').slideDown();
+                if (data['stat'] == 'fail')
+                {
+                    alert('Error occured in data submit.');
+                }
+                else
+                {
+                    alert('Thanks for your reservation and we will confirm it with you by email or phone as soon as possible.');
+                }
+                    
+            }
+        });
+		return false;
+	});
+});
+// ]]>
+</script>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="block_header">
+      <div class="logo"><a href="index.html"><img src="images/logo_5.jpg" width="401" height="145" border="0" alt="logo" /></a></div>
+      <div class="menu">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about_us.html">About us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order</a></li>
+        </ul>
+      </div>
+      <div class="clr"> </div>
+    </div>
+  </div>
+  <div class="slider2">
+    <div class="slider4_resize">
+      <h2>Reservation</h2>
+    </div>
+    <div class="clr"> </div>
+  </div>
+  <div class="clr"> </div>
+  <div class="body">
+    <div class="body_resize2">
+      <p><strong>Here make table reservations</strong><br />
+        Here you can make the table reservations by filling in this form below with necessary information in correct format. We will contact you to confirm with your reservations by email or phone call as soon as possible.</p>
+      <form id="contactform">
+        <ol>
+          <li>
+            <label for="name">Your name</label>
+            <input id="name" name="name" class="required" />
+          </li>
+          <li>
+            <label for="email">Your email</label>
+            <input id="email" name="email" class="required email" />
+          </li>
+          <li>
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" class="required" />
+          </li>
+          <li>
+            <label for="amount">Amount of People</label>
+            <input id="amount" name="amount" class="required" />
+          </li>
+          <li>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" cols="50"></textarea>
+          </li>
+          <li class="buttons">
+            <input type="image" name="submit" id="submit" src="images/send.gif" />
+          </li>
+        </ol>
+      </form>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="FBG">
+    <div class="Fbg_resize">
+      <div class="Twitter">
+        <p><img src="images/Twitter.gif" alt="picture" width="129" height="96" /></p>
+        <p><strong>Twitter of Our Restaurant</strong><br />
+          Welcome to the twitter of our restaurant.</p>
+        <p><a href="#"><img src="images/read_more.gif" alt="picture" width="68" height="20" border="0" /></a></p>
+      </div>
+      <div class="con">
+        <h2>Contact us</h2>
+        <ul>
+          <li>Name of the Company</li>
+          <li>2901 Marmora Road, Glassgow, D04 59GR</li>
+          <li>Telephone: +1 234 567 8910</li>
+        </ul>
+        <ul>
+          <li>FAX: +1 234 567 8910</li>
+          <li><a href="#">E-mail: mail@yoursitename.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="footer">
+    <div class="resize">
+      <p class="footer_logo">&nbsp;</p>
+      <div>© Copyright 2013. <a href="#">ethan &amp; kopkop</a>. All Rights Reserved<br />
+        <a href="index.html">Home</a> | <a href="about_us.html">Contact</a> | <a href="#">RSS</a></div>
+    </div>
+    <p class="clr"></p>
+  </div>
+</div>
+</body>
+</html>
